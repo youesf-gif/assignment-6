@@ -52,10 +52,105 @@ async function getBookByYear(req, res, next) {
     }
 }
 
+async function getBookByGenre(req, res, next) {
+    try {
+        const { genre } = req.query;
+        const books = await bookService.getBookByGenre(genre);
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksSkipTwoAndSort(req, res, next) {
+    try {
+        const books = await bookService.getBooksSkipTwoAndSort();
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksYearStoredAsInteger(req, res, next) {
+    try {
+        const books = await bookService.getBooksYearStoredAsInteger();
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksByExcludeGenre(req, res, next) {
+    try {
+        const books = await bookService.getBooksByExcludeGenre([
+            "Horror",
+            "Science Fiction",
+        ]);
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function deleteBooksBeforeYear(req, res, next) {
+    try {
+        const { year } = req.query;
+        const books = await bookService.deleteBooksBeforeYear(Number(year));
+        res.json({ message: "Books deleted successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksByAggregate1(req, res, next) {
+    try {
+        const books = await bookService.getBooksByAggregate1();
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksByAggregate2(req, res, next) {
+    try {
+        const books = await bookService.getBooksByAggregate2();
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksByAggregate3(req, res, next) {
+    try {
+        const books = await bookService.getBooksByAggregate3();
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
+async function getBooksByAggregate4(req, res, next) {
+    try {
+        const books = await bookService.getBooksByAggregate4();
+        res.json({ message: "Books retrieved successfully", data: books });
+    } catch (error) {
+        next(error);
+    }
+}
+
 export default {
     createBook,
     createMultipleBooks,
     updateBookFuture,
     getBook,
     getBookByYear,
+    getBookByGenre,
+    getBooksSkipTwoAndSort,
+    getBooksYearStoredAsInteger,
+    getBooksByExcludeGenre,
+    deleteBooksBeforeYear,
+    getBooksByAggregate1,
+    getBooksByAggregate2,
+    getBooksByAggregate3,
+    getBooksByAggregate4,
 };
